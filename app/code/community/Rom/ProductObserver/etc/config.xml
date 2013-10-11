@@ -19,7 +19,7 @@
 <config>
     <modules>
         <Rom_ProductObserver>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Rom_ProductObserver>
     </modules>
     <global>
@@ -28,6 +28,14 @@
                <class>Rom_ProductObserver_Model</class>
                <resourceModel>romproductobserver_mysql4</resourceModel>
             </romproductobserver>
+            <romproductobserver_mysql4>
+                <class>Fraisr_Connect_Model_Mysql4</class>
+                <entities>
+                    <log>
+                        <table>romproductobserver_log</table>
+                    </log>
+                </entities>
+            </romproductobserver_mysql4>
         </models>
         <helpers>
             <romproductobserver>
