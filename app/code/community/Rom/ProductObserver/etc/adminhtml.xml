@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   Rom
+ * @package    Rom_ProductObserver
+ * @copyright  Copyright (c) 2013 ROM Agence de communication <rom@rom.fr>
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @author     André Herrn <andre.herrn@rom.fr>
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                             <romproductobserver_log>
+                                <title>Rom - Product Observer</title>
+                                <sort_order>150</sort_order>
+                            </romproductobserver_log>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <system>
+            <children>
+                <romproductobserver_log translate="title">
+                    <sort_order>100</sort_order>
+                    <title>Rom - Product Observer</title>
+                    <action>romproductobserver/adminhtml_log/index</action>
+                </romproductobserver_log>
+            </children>
+        </system>
+    </menu> 
+</config>

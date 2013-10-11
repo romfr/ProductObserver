@@ -23,13 +23,18 @@
         </Rom_ProductObserver>
     </modules>
     <global>
+        <blocks>
+            <romproductobserver>
+                <class>Rom_ProductObserver_Block</class>
+            </romproductobserver>
+        </blocks>
         <models>
             <romproductobserver>
                <class>Rom_ProductObserver_Model</class>
                <resourceModel>romproductobserver_mysql4</resourceModel>
             </romproductobserver>
             <romproductobserver_mysql4>
-                <class>Fraisr_Connect_Model_Mysql4</class>
+                <class>Rom_ProductObserver_Model_Mysql4</class>
                 <entities>
                     <log>
                         <table>romproductobserver_log</table>
@@ -51,4 +56,15 @@
             </romproductobserver_setup>
         </resources>
     </global>
+    <admin>
+        <routers>
+            <romproductobserver>
+                <use>admin</use>
+                <args>
+                    <module>Rom_ProductObserver</module>
+                    <frontName>romproductobserver</frontName>
+                </args>
+            </romproductobserver>
+        </routers>
+    </admin>
 </config>
