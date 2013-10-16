@@ -55,6 +55,26 @@
                 </setup>
             </romproductobserver_setup>
         </resources>
+        <events>
+            <!-- Event when product is deleted - before it is done -->
+            <catalog_product_delete_before>
+                <observers>
+                    <romproductobserver_delete_product>
+                        <class>romproductobserver/observer</class>
+                        <method>logDeleteProduct</method>
+                    </romproductobserver_delete_product>
+                </observers>
+            </catalog_product_delete_before>
+            <!-- Event when product is added -->
+            <catalog_product_save_before>
+                <observers>
+                    <romproductobserver_save_product>
+                        <class>romproductobserver/observer</class>
+                        <method>logSaveProduct</method>
+                    </romproductobserver_save_product>
+                </observers>
+            </catalog_product_save_before>
+        </events>
     </global>
     <admin>
         <routers>

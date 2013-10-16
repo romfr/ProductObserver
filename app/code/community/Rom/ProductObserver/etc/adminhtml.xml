@@ -21,20 +21,20 @@
         <resources>
             <admin>
                 <children>
-                    <system>
+                    <report>
                         <children>
                              <romproductobserver_log>
                                 <title>Rom - Product Observer</title>
                                 <sort_order>150</sort_order>
                             </romproductobserver_log>
                         </children>
-                    </system>
+                    </report>
                 </children>
             </admin>
         </resources>
     </acl>
     <menu>
-        <system>
+        <report>
             <children>
                 <romproductobserver_log translate="title">
                     <sort_order>100</sort_order>
@@ -42,6 +42,6 @@
                     <action>romproductobserver/adminhtml_log/index</action>
                 </romproductobserver_log>
             </children>
-        </system>
+        </report>
     </menu> 
 </config>

@@ -33,7 +33,7 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
     {
         parent::__construct();
         $this->setId('romproductobserverLogIndex');
-        $this->setDefaultSort('id');
+        $this->setDefaultSort('created_at');
         $this->setDefaultDir('desc');
     }
 
@@ -56,13 +56,6 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
      */ 
     protected function _prepareColumns()
     {
-        $this->addColumn('id', array(
-            'header'    => Mage::helper('romproductobserver/data')->__('Id'),
-            'align'         => 'left',
-            'filter_index'  => 'id',
-            'index'         => 'id',
-        ));
-
         $this->addColumn('sku', array(
             'header'    => Mage::helper('romproductobserver/data')->__('Sku'),
             'align'         => 'left',

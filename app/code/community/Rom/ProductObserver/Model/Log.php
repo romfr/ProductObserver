@@ -40,6 +40,11 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
     const ACTION_TYPE_DELETE = "delete";
 
     /**
+     * @const CHANGED_PART_PRODUCT Changed part product
+     */
+    const CHANGED_PART_PRODUCT = "product";
+
+    /**
      * @const CHANGED_PART_PRICE Changed part price
      */
     const CHANGED_PART_PRICE = "price";
@@ -95,6 +100,7 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
         $helper = Mage::helper('romproductobserver/data');
 
         return array(
+            self::CHANGED_PART_PRODUCT   => $helper->__('Product'),
             self::CHANGED_PART_PRICE   => $helper->__('Price'),
             self::CHANGED_PART_SPECIAL_PRICE   => $helper->__('Special Price'),
             self::CHANGED_PART_STOCK     => $helper->__('Stock Status'),
