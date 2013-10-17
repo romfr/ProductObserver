@@ -65,7 +65,7 @@
                     </romproductobserver_delete_product>
                 </observers>
             </catalog_product_delete_before>
-            <!-- Event when product is added -->
+            <!-- Event when product is added/updated -->
             <catalog_product_save_before>
                 <observers>
                     <romproductobserver_save_product>
@@ -74,6 +74,24 @@
                     </romproductobserver_save_product>
                 </observers>
             </catalog_product_save_before>
+            <!-- Event when catalogrule is deleted -->
+            <catalogrule_rule_delete_before>
+                <observers>
+                    <romproductobserver_save_product>
+                        <class>romproductobserver/observer</class>
+                        <method>logDeleteCatalogRule</method>
+                    </romproductobserver_save_product>
+                </observers>
+            </catalogrule_rule_delete_before>
+            <!-- Event when catalogrule is added/updated -->
+            <catalogrule_rule_save_before>
+                <observers>
+                    <romproductobserver_save_product>
+                        <class>romproductobserver/observer</class>
+                        <method>logSaveCatalogRule</method>
+                    </romproductobserver_save_product>
+                </observers>
+            </catalogrule_rule_save_before>
         </events>
     </global>
     <admin>

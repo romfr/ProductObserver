@@ -66,4 +66,47 @@ class Rom_ProductObserver_Model_Observer extends Mage_Core_Model_Abstract
             Mage::getModel('romproductobserver/changedPart_Product')->logUpdateByAttribute($product);
         }
     }
+
+    /**
+     * Log delete catalog rule
+     *
+     * @param  Varien_Event_Observer $observer
+     * @return void
+     */
+    public function logDeleteCatalogRule($observer)
+    {
+        $rule = $observer->getEvent()->getRule();
+
+        //Check if given catalog rule is valid
+        if (!$rule instanceof Mage_CatalogRule_Model_Rule) {
+            return;
+        }
+
+        //Catalog rule delete
+        Mage::getModel('romproductobserver/changedPart_catalogRule')->logDelete($rule);
+    }
+
+    /**
+     * Log update catalog rule
+     *
+     * @param  Varien_Event_Observer $observer
+     * @return void
+     */
+    public function logSaveCatalogRule($observer)
+    {
+        $rule = $observer->getEvent()->getRule();
+
+        //Check if given catalog rule is valid
+        if (!$rule instanceof Mage_CatalogRule_Model_Rule) {
+            return;
+        }
+
+        //Catalog rule is new
+        if (true === $rule->isObjectNew()) {
+            Mage::getModel('romproductobserver/changedPart_catalogRule')->logNew($rule);
+        } else {
+            //Catalog rule update
+            Mage::getModel('romproductobserver/changedPart_catalogRule')->logUpdate($rule);
+        }
+    }
 }
