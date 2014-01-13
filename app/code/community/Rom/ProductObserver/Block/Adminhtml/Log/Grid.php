@@ -56,20 +56,23 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
      */ 
     protected function _prepareColumns()
     {
+        /*
         $this->addColumn('sku', array(
             'header'    => Mage::helper('romproductobserver/data')->__('Sku'),
             'align'         => 'left',
             'filter_index'  => 'sku',
             'index'         => 'sku',
         ));
+        */
 
         $this->addColumn('title', array(
-            'header'    => Mage::helper('romproductobserver/data')->__('Title'),
+            'header'        => Mage::helper('romproductobserver/data')->__('Title [sku]'),
             'align'         => 'left',
             'filter_index'  => 'title',
-            'index'         => 'title',
+            'renderer'      => 'romproductobserver/adminhtml_log_grid_renderer_title',
         ));
 
+        /*
         $this->addColumn('action_type', array(
             'header'    => Mage::helper('romproductobserver/data')->__('Action'),
             'align'     => 'left',
@@ -77,6 +80,7 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
             'type'      => 'options',
             'options'   => Mage::getModel('romproductobserver/log')->getActionTypeOptions(),
         ));
+        */
 
         $this->addColumn('changed_part', array(
             'header'         => Mage::helper('romproductobserver/data')->__('Part'),
@@ -94,6 +98,7 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
             'filter_index'  => 'message',
         ));
         
+        /*
         if (!Mage::app()->isSingleStoreMode()) {
             $this->addColumn('store_id', array(
                 'header'    => Mage::helper('romproductobserver/data')->__('Store'),
@@ -103,6 +108,7 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
                 'display_deleted' => true,
             ));
         }
+        */
         
         $this->addColumn('created_at', array(
             'header'        => Mage::helper('romproductobserver/data')->__('Date'),

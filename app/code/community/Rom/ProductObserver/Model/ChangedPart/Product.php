@@ -42,7 +42,14 @@ class Rom_ProductObserver_Model_ChangedPart_Product
      */
     public function logNew($product)
     {
-        $this->log($product, Rom_ProductObserver_Model_Log::ACTION_TYPE_ADD);
+        //Set message
+        $this->logMessage = 'New product';
+
+        $this->log(
+            $product,
+            Rom_ProductObserver_Model_Log::ACTION_TYPE_ADD,
+            Rom_ProductObserver_Model_Log::CHANGED_PART_PRODUCT
+        );
     }
 
     /**
@@ -54,7 +61,11 @@ class Rom_ProductObserver_Model_ChangedPart_Product
      */
     public function logUpdate($product, $changedPart = null)
     {
-        $this->log($product, Rom_ProductObserver_Model_Log::ACTION_TYPE_UPDATE, $changedPart);
+        $this->log(
+            $product,
+            Rom_ProductObserver_Model_Log::ACTION_TYPE_UPDATE,
+            $changedPart
+        );
     }
 
     /**
@@ -65,7 +76,14 @@ class Rom_ProductObserver_Model_ChangedPart_Product
      */
     public function logDelete($product)
     {
-        $this->log($product, Rom_ProductObserver_Model_Log::ACTION_TYPE_DELETE);
+        //Set message
+        $this->logMessage = 'Product deleted';
+
+        $this->log(
+            $product,
+            Rom_ProductObserver_Model_Log::ACTION_TYPE_DELETE,
+            Rom_ProductObserver_Model_Log::CHANGED_PART_PRODUCT
+        );
     }
 
     /**
@@ -82,8 +100,6 @@ class Rom_ProductObserver_Model_ChangedPart_Product
         if (true === is_null($changedPart)) {
             //Disable pure product update log
             return;
-            
-            $changedPart = Rom_ProductObserver_Model_Log::CHANGED_PART_PRODUCT;
         }
         
         //Set store_id if product was saved in a special scope
@@ -122,7 +138,7 @@ class Rom_ProductObserver_Model_ChangedPart_Product
         if ($product->getData('price') != $product->getOrigData('price')) {
             //Set detail price update message
             $this->logMessage = sprintf(
-                '[From] %s [To] %s',
+                'Price: [From] %s [To] %s',
                 (float) $product->getOrigData('price'),
                 (float) $product->getData('price')
             );
@@ -137,27 +153,36 @@ class Rom_ProductObserver_Model_ChangedPart_Product
         if ($product->getData('special_price') != $product->getOrigData('special_price')) {
             //Set detail price update message
             $this->logMessage = sprintf(
-                '[From] %s [To] %s',
+                'Special price: [From] %s [To] %s',
                 (float) $product->getOrigData('special_price'),
                 (float) $product->getData('special_price')
             );
             
             $this->logUpdate(
                 $product,
-                Rom_ProductObserver_Model_Log::CHANGED_PART_SPECIAL_PRICE
+                Rom_ProductObserver_Model_Log::CHANGED_PART_PRICE
             );
         }
 
         //Stock updated
         $stockData = $product->getStockData();
+
+        //var_dump($stockData);
+        //exit("end");
+
         if (false === is_null($product->getData('is_in_stock'))
             && false === is_null($stockData['is_in_stock'])
-            && $product->getData('is_in_stock') != $stockData['is_in_stock']) {
+            && ($product->getData('is_in_stock') != $stockData['is_in_stock']
+                || $product->getData('qty') != $stockData['qty'])
+            ) {
             //Set message -> if product goes in stock or out of stock
-            if ($product->getData('is_in_stock') == '1' && $stockData['is_in_stock'] == '0') {
+            if (($product->getData('is_in_stock') == '1' && $stockData['is_in_stock'] == '0')
+                || ($product->getData('is_in_stock') == '1' && $stockData['qty'] < Mage::getStoreConfig('cataloginventory/item_options/min_qty'))) {
                 $this->logMessage = '[From] In stock [To] Out of stock';
             } elseif ($product->getData('is_in_stock') == '0' &&  $stockData['is_in_stock'] == '1') {
                 $this->logMessage = '[From] Out of stock [To] In stock';
+            } else {
+                return;
             }
             
             $this->logUpdate(

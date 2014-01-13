@@ -75,6 +75,7 @@
                 </observers>
             </catalog_product_save_before>
             <!-- Event when catalogrule is deleted -->
+            <!--
             <catalogrule_rule_delete_before>
                 <observers>
                     <romproductobserver_save_product>
@@ -83,6 +84,7 @@
                     </romproductobserver_save_product>
                 </observers>
             </catalogrule_rule_delete_before>
+            -->
             <!-- Event when catalogrule is added/updated -->
             <catalogrule_rule_save_before>
                 <observers>

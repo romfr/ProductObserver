@@ -52,7 +52,7 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
     /**
      * @const CHANGED_PART_SPECIAL_PRICE Changed part special price
      */
-    const CHANGED_PART_SPECIAL_PRICE = 'special_price';
+    //const CHANGED_PART_SPECIAL_PRICE = 'special_price';
 
     /**
      * @const CHANGED_PART_STOCK Changed part stock
@@ -62,7 +62,7 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
     /**
      * @const CHANGED_PART_CATALOG_RULE Changed part catalog price rule
      */
-    const CHANGED_PART_CATALOG_RULE = 'catalog_rule';
+    //const CHANGED_PART_CATALOG_RULE = 'catalog_rule';
 
     /**
      * Constructor
@@ -102,9 +102,9 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
         return array(
             self::CHANGED_PART_PRODUCT   => $helper->__('Product'),
             self::CHANGED_PART_PRICE   => $helper->__('Price'),
-            self::CHANGED_PART_SPECIAL_PRICE   => $helper->__('Special Price'),
+            //self::CHANGED_PART_SPECIAL_PRICE   => $helper->__('Special Price'),
             self::CHANGED_PART_STOCK     => $helper->__('Stock Status'),
-            self::CHANGED_PART_CATALOG_RULE    => $helper->__('Catalog Price Rules'),
+            //self::CHANGED_PART_CATALOG_RULE    => $helper->__('Catalog Price Rules'),
         );
     }
 
