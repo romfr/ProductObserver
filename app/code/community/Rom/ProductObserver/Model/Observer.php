@@ -59,8 +59,8 @@ class Rom_ProductObserver_Model_Observer extends Mage_Core_Model_Abstract
         if (true === $product->isObjectNew()) {
             Mage::getModel('romproductobserver/changedPart_Product')->logNew($product);
         } else {
-            //Product update
-            Mage::getModel('romproductobserver/changedPart_Product')->logUpdate($product);
+            //Product update -> disabled as product update individually is not important
+            //Mage::getModel('romproductobserver/changedPart_Product')->logUpdate($product);
 
             //Log special product update action
             Mage::getModel('romproductobserver/changedPart_Product')->logUpdateByAttribute($product);

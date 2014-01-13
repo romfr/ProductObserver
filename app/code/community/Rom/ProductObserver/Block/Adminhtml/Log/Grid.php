@@ -87,6 +87,23 @@ class Rom_ProductObserver_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_
             'options'   => Mage::getModel('romproductobserver/log')->getChangedPartOptions(),
         ));
         
+        $this->addColumn('message', array(
+            'header'         => Mage::helper('romproductobserver/data')->__('Message'),
+            'align'         => 'left',
+            'index'         => 'message',
+            'filter_index'  => 'message',
+        ));
+        
+        if (!Mage::app()->isSingleStoreMode()) {
+            $this->addColumn('store_id', array(
+                'header'    => Mage::helper('romproductobserver/data')->__('Store'),
+                'index'     => 'store_id',
+                'type'      => 'store',
+                'store_view'=> true,
+                'display_deleted' => true,
+            ));
+        }
+        
         $this->addColumn('created_at', array(
             'header'        => Mage::helper('romproductobserver/data')->__('Date'),
             'align'         => 'left',
