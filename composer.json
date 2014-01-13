@@ -1,0 +1,14 @@
+{
+  "name": "rom/productobserver",
+  "license": ["OSL-3.0"],
+  "type": "magento-module",
+  "description": "Magento extension to check changes on products prices and stock values and list them in a backend grid",
+  "homepage": "https://github.com/romfr/ProductObserver",
+  "authors":[{
+    "name": "André Herrn",
+    "email": "andre.herrn@rom.fr"
+  }],
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  }
+}
