@@ -166,9 +166,7 @@ class Rom_ProductObserver_Model_ChangedPart_Product
 
         //Stock updated
         $stockData = $product->getStockData();
-
-        //var_dump($stockData);
-        //exit("end");
+        $minOutOfStockQty = (int) Mage::getStoreConfig('cataloginventory/item_options/min_qty');
 
         if (false === is_null($product->getData('is_in_stock'))
             && false === is_null($stockData['is_in_stock'])
@@ -177,7 +175,7 @@ class Rom_ProductObserver_Model_ChangedPart_Product
             ) {
             //Set message -> if product goes in stock or out of stock
             if (($product->getData('is_in_stock') == '1' && $stockData['is_in_stock'] == '0')
-                || ($product->getData('is_in_stock') == '1' && $stockData['qty'] < Mage::getStoreConfig('cataloginventory/item_options/min_qty'))) {
+                || ($product->getData('is_in_stock') == '1' && $stockData['qty'] < $minOutOfStockQty)) {
                 $this->logMessage = '[From] In stock [To] Out of stock';
             } elseif ($product->getData('is_in_stock') == '0' &&  $stockData['is_in_stock'] == '1') {
                 $this->logMessage = '[From] Out of stock [To] In stock';
