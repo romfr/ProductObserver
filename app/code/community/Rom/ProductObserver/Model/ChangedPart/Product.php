@@ -175,7 +175,7 @@ class Rom_ProductObserver_Model_ChangedPart_Product
             ) {
             //Set message -> if product goes in stock or out of stock
             if (($product->getData('is_in_stock') == '1' && $stockData['is_in_stock'] == '0')
-                || ($product->getData('is_in_stock') == '1' && $stockData['qty'] < $minOutOfStockQty)) {
+                || ($product->getData('is_in_stock') == '1' && $stockData['qty'] <= $minOutOfStockQty)) {
                 $this->logMessage = '[From] In stock [To] Out of stock';
             } elseif ($product->getData('is_in_stock') == '0' &&  $stockData['is_in_stock'] == '1') {
                 $this->logMessage = '[From] Out of stock [To] In stock';
