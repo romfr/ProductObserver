@@ -27,7 +27,7 @@ class Rom_ProductObserver_Model_ChangedPart_Product
     /**
      * @var string Log message
      */
-    protected $logMessage = null;
+    public $logMessage = null;
     
     /**
      * @var int $storeId StoreId

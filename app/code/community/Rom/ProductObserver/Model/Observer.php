@@ -109,4 +109,36 @@ class Rom_ProductObserver_Model_Observer extends Mage_Core_Model_Abstract
             Mage::getModel('romproductobserver/changedPart_catalogRule')->logUpdate($rule);
         }
     }
+
+    public function logOutOfStockAfterSale($observer)
+    {
+        //get order
+        $order= $observer->getEvent()->getOrder();
+
+        //Loop through every order item
+        foreach ($order->getItemsCollection() as $item) {
+            //Load stock item
+            $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($item->getProductId());
+
+            //Build registery product log key
+            $logKey = 'logged_sales_out_of_stock_'.$item->getProductId();
+
+            //Log entry if item is out of stock now
+            if ((int) $stockItem->getQty() <= (int) Mage::getStoreConfig('cataloginventory/item_options/min_qty')
+                && true === is_null(Mage::registry($logKey))
+                && true === is_null($item->getParentId())) {
+                //Save log entry
+                Mage::getModel('romproductobserver/log')
+                    ->setSku($item->getSku())
+                    ->setTitle($item->getName())
+                    ->setActionType(Rom_ProductObserver_Model_Log::ACTION_TYPE_UPDATE)
+                    ->setChangedPart(Rom_ProductObserver_Model_Log::CHANGED_PART_STOCK)
+                    ->setMessage('[From] In stock [To] Out of stock')
+                    ->setStoreId($order->getStoreId())
+                    ->save();
+
+                Mage::register($logKey, 1);
+            }
+        }
+    }
 }
