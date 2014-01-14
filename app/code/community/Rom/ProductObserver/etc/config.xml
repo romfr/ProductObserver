@@ -95,14 +95,14 @@
                 </observers>
             </catalogrule_rule_save_before>
             <!-- Event when cataloginventory item is saved -->
-            <sales_order_save_after>
+            <checkout_submit_all_after>
                 <observers>
                     <cataloginventory_stock_item_save_product>
                         <class>romproductobserver/observer</class>
                         <method>logOutOfStockAfterSale</method>
                     </cataloginventory_stock_item_save_product>
                 </observers>
-            </sales_order_save_after>
+            </checkout_submit_all_after>
         </events>
     </global>
     <admin>
@@ -116,4 +116,15 @@
             </romproductobserver>
         </routers>
     </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Rom_ProductObserver>
+                    <files>
+                        <default>Rom_ProductObserver.csv</default>
+                    </files>
+                </Rom_ProductObserver>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>
