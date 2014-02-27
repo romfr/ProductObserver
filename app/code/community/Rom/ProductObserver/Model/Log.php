@@ -100,8 +100,8 @@ class Rom_ProductObserver_Model_Log extends Mage_Core_Model_Abstract
         $helper = Mage::helper('romproductobserver/data');
 
         return array(
-            self::CHANGED_PART_PRODUCT   => $helper->__('Product'),
-            self::CHANGED_PART_PRICE   => $helper->__('Price'),
+            self::CHANGED_PART_PRODUCT   => $helper->__('New/deleted product'),
+            self::CHANGED_PART_PRICE   => $helper->__('Price change'),
             //self::CHANGED_PART_SPECIAL_PRICE   => $helper->__('Special Price'),
             self::CHANGED_PART_STOCK     => $helper->__('Stock Status'),
             //self::CHANGED_PART_CATALOG_RULE    => $helper->__('Catalog Price Rules'),

@@ -126,7 +126,7 @@ class Rom_ProductObserver_Model_Observer extends Mage_Core_Model_Abstract
             //Log entry if item is out of stock now
             if ((int) $stockItem->getQty() <= (int) Mage::getStoreConfig('cataloginventory/item_options/min_qty')
                 && true === is_null(Mage::registry($logKey))
-                && true === is_null($item->getParentId())) {
+                && 'simple' == $item->getProductType()) {
                 //Save log entry
                 Mage::getModel('romproductobserver/log')
                     ->setSku($item->getSku())
