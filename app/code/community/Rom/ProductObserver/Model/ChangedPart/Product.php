@@ -168,7 +168,9 @@ class Rom_ProductObserver_Model_ChangedPart_Product
         $stockData = $product->getStockData();
         $minOutOfStockQty = (int) Mage::getStoreConfig('cataloginventory/item_options/min_qty');
 
-        if (false === is_null($product->getData('is_in_stock'))
+        if (true === isset($stockData['is_in_stock'])
+            && true === isset($stockData['qty'])
+            && false === is_null($product->getData('is_in_stock'))
             && false === is_null($stockData['is_in_stock'])
             && ($product->getData('is_in_stock') != $stockData['is_in_stock']
                 || $product->getData('qty') != $stockData['qty'])
