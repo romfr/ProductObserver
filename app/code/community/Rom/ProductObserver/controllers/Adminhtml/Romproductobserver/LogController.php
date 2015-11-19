@@ -22,7 +22,7 @@
  * @package    Rom_ProductObserver
  * @author     André Herrn <andre.herrn@rom.fr>
  */
-class Rom_ProductObserver_Adminhtml_LogController extends Mage_Adminhtml_Controller_Action
+class Rom_ProductObserver_Adminhtml_Romproductobserver_LogController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Log index

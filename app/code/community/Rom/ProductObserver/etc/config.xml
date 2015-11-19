@@ -107,13 +107,13 @@
     </global>
     <admin>
         <routers>
-            <romproductobserver>
-                <use>admin</use>
-                <args>
-                    <module>Rom_ProductObserver</module>
-                    <frontName>romproductobserver</frontName>
-                </args>
-            </romproductobserver>
+            <adminhtml>
+				<args>
+					<modules>
+						<romproductobserver before="Mage_Adminhtml">Rom_ProductObserver_Adminhtml</romproductobserver>
+					</modules>
+				</args>
+			</adminhtml>
         </routers>
     </admin>
     <adminhtml>
